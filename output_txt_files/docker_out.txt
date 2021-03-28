@@ -1,1 +1,697 @@
-<paste log output from Docker prediction, here>
+Successfully built 201c90a99183
+Successfully tagged mlproj:latest
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 164-535-069
+171.48.107.113 - - [28/Mar/2021 08:20:22] "GET / HTTP/1.1" 200 -
+106.205.168.233 - - [28/Mar/2021 08:20:23] "GET /favicon.ico HTTP/1.1" 404 -
+[2021-03-28 08:21:35,703] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-03-28 08:21:35,721] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:21:35,732] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:21:35,736] INFO in app: Prediction for the data : 
+[20.35373177134412]
+172.17.0.1 - - [28/Mar/2021 08:21:35] "POST /predict HTTP/1.1" 200 -
+^C(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/ankush-ksharma/ml-microservice-kubernetes
+   50b7b2b..2623d7b  main       -> origin/main
+Updating 50b7b2b..2623d7b
+Fast-forward
+ app.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ ./run_docker.sh 
+Sending build context to Docker daemon  1.124MB
+Step 1/6 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> 86be3c4965e8
+Step 3/6 : COPY . app.py /app/
+ ---> bccfb3aefe76
+Step 4/6 : RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in 1c61a5d09f08
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-21.0.1
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl (33 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Collecting pylint==2.7.0
+  Downloading pylint-2.7.0-py3-none-any.whl (342 kB)
+Collecting toml>=0.7.1
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting astroid==2.5.0
+  Downloading astroid-2.5-py3-none-any.whl (220 kB)
+Collecting isort<6,>=4.2.5
+  Downloading isort-5.8.0-py3-none-any.whl (103 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Collecting lazy-object-proxy>=1.4.0
+  Downloading lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl (55 kB)
+Collecting wrapt<1.13,>=1.11
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=71605 sha256=49a12c2fbeeec94adc7e7be30f4872f58108e0de42ebac41c6aaf799b73d792d
+  Stored in directory: /root/.cache/pip/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built wrapt
+Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, toml, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
+Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.5 isort-5.8.0 itsdangerous-1.1.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.7.0 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 toml-0.10.2 typed-ast-1.4.2 wrapt-1.12.1
+Error processing tar file(exit status 1): write /usr/local/lib/python3.7/site-packages/scipy/special/_ufuncs.cpython-37m-x86_64-linux-gnu.so: no space left on device
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 265-462-202
+[2021-03-28 08:26:43,472] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-03-28 08:26:43,489] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:26:43,500] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:26:43,504] INFO in app: Prediction for the data : 
+[20.35373177134412]
+172.17.0.1 - - [28/Mar/2021 08:26:43] "POST /predict HTTP/1.1" 200 -
+^C(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ git pull
+Already up to date.
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ ./run_docker.sh 
+Sending build context to Docker daemon  1.124MB
+Step 1/6 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> 86be3c4965e8
+Step 3/6 : COPY . app.py /app/
+ ---> 5801c7989092
+Step 4/6 : RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in 51fbb0d7f4df
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-21.0.1
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl (33 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Collecting pylint==2.7.0
+  Downloading pylint-2.7.0-py3-none-any.whl (342 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting toml>=0.7.1
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting astroid==2.5.0
+  Downloading astroid-2.5-py3-none-any.whl (220 kB)
+Collecting isort<6,>=4.2.5
+  Downloading isort-5.8.0-py3-none-any.whl (103 kB)
+Collecting lazy-object-proxy>=1.4.0
+  Downloading lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl (55 kB)
+Collecting wrapt<1.13,>=1.11
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=71610 sha256=d183feecfc341866efda411808d6b58647dd3e632176ed9aaab99130c5cbb8fd
+  Stored in directory: /root/.cache/pip/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built wrapt
+Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, toml, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
+ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device
+
+The command '/bin/sh -c pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt' returned a non-zero code: 1
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+Unable to find image 'mlproject:latest' locally
+docker: Error response from daemon: pull access denied for mlproject, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker images ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              5801c7989092        29 seconds ago      930MB
+<none>              <none>              bccfb3aefe76        3 minutes ago       930MB
+mlproj              latest              201c90a99183        9 minutes ago       1.25GB
+lambci/lambda       python3.8           094248252696        8 weeks ago         524MB
+lambci/lambda       nodejs12.x          22a4ada8399c        8 weeks ago         390MB
+lambci/lambda       nodejs10.x          db93be728e7b        8 weeks ago         385MB
+lambci/lambda       python3.7           22b4b6fd9260        8 weeks ago         946MB
+lambci/lambda       python3.6           177c85a10179        8 weeks ago         894MB
+lambci/lambda       python2.7           d96a01fe4c80        8 weeks ago         763MB
+lambci/lambda       nodejs8.10          5754fee26e6e        8 weeks ago         813MB
+python              3.7.3-stretch       34a518642c76        21 months ago       929MB
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] yes
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+51fbb0d7f4df6bb1bbfb17707f517bdb89d1fe4f0037942bad53de4eb8cc4f9c
+1cab3db888936963329a476183ed20b38f906abe8bb59d063b9b9391ced1a7f1
+1c61a5d09f084c611bb7a7a54311d5c08db5e24bf5bed064d4d4c45c09c4d00a
+1cf27fdfaaa143a62ddd637cba5ace2ec586e839d614f1ce7671c66062b5819b
+
+Deleted Images:
+deleted: sha256:bccfb3aefe76816889cc24481c72264cabd892d89dfa33a33468cfb802f6f11b
+deleted: sha256:8fa88e9a88b05874ee492633b2ef0a248c022ca95d41ec81cea431f808da3523
+deleted: sha256:5801c79890926d8d4c796f1a61c71476e8a4b95fe131b6dbeaef510af00bf613
+deleted: sha256:c4fa68eaefd7ca0947013643ee0d0dc8a6f95cf65c6de8368c93ed0c57cd4b41
+
+Total reclaimed space: 556.5MB
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mlproj              latest              201c90a99183        10 minutes ago      1.25GB
+lambci/lambda       python3.8           094248252696        8 weeks ago         524MB
+lambci/lambda       nodejs12.x          22a4ada8399c        8 weeks ago         390MB
+lambci/lambda       nodejs10.x          db93be728e7b        8 weeks ago         385MB
+lambci/lambda       python3.7           22b4b6fd9260        8 weeks ago         946MB
+lambci/lambda       python3.6           177c85a10179        8 weeks ago         894MB
+lambci/lambda       python2.7           d96a01fe4c80        8 weeks ago         763MB
+lambci/lambda       nodejs8.10          5754fee26e6e        8 weeks ago         813MB
+python              3.7.3-stretch       34a518642c76        21 months ago       929MB
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ ./run_docker.sh 
+Sending build context to Docker daemon  1.124MB
+Step 1/6 : FROM python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> 86be3c4965e8
+Step 3/6 : COPY . app.py /app/
+ ---> c83662e7e9c0
+Step 4/6 : RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in ae3c2e41255f
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-21.0.1
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl (33 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Collecting pylint==2.7.0
+  Downloading pylint-2.7.0-py3-none-any.whl (342 kB)
+Collecting isort<6,>=4.2.5
+  Downloading isort-5.8.0-py3-none-any.whl (103 kB)
+Collecting astroid==2.5.0
+  Downloading astroid-2.5-py3-none-any.whl (220 kB)
+Collecting toml>=0.7.1
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Collecting lazy-object-proxy>=1.4.0
+  Downloading lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl (55 kB)
+Collecting wrapt<1.13,>=1.11
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=71604 sha256=b3f68e3f9a7003d257922ad2d23722aea45a6db25515bc883439f216ad3a52f7
+  Stored in directory: /root/.cache/pip/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built wrapt
+Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, toml, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
+Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.5 isort-5.8.0 itsdangerous-1.1.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.7.0 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 toml-0.10.2 typed-ast-1.4.2 wrapt-1.12.1
+Error processing tar file(exit status 1): write /usr/local/lib/python3.7/site-packages/scipy/special/add_newdocs.py: no space left on device
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              c83662e7e9c0        32 seconds ago      930MB
+mlproj              latest              201c90a99183        11 minutes ago      1.25GB
+lambci/lambda       python3.8           094248252696        8 weeks ago         524MB
+lambci/lambda       nodejs12.x          22a4ada8399c        8 weeks ago         390MB
+lambci/lambda       nodejs10.x          db93be728e7b        8 weeks ago         385MB
+lambci/lambda       python3.7           22b4b6fd9260        8 weeks ago         946MB
+lambci/lambda       python3.6           177c85a10179        8 weeks ago         894MB
+lambci/lambda       python2.7           d96a01fe4c80        8 weeks ago         763MB
+lambci/lambda       nodejs8.10          5754fee26e6e        8 weeks ago         813MB
+python              3.7.3-stretch       34a518642c76        21 months ago       929MB
+Unable to find image 'mlproject:latest' locally
+docker: Error response from daemon: pull access denied for mlproject, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+ae3c2e41255f942d1db23416c5b44b89bafd416aae439a58903df5441c083f42
+
+
+
+Deleted Images:
+untagged: lambci/lambda:python3.8
+untagged: lambci/lambda@sha256:be943e04cfeda15e0ea141d84a914b12f500194a694e809bb3cd0d0dd187aa56
+deleted: sha256:09424825269654fc83b2455c5408bd8142c2ae38f8beb16a23d0dbcc73f307d3
+deleted: sha256:8ac676da7e7955de645d664e1f62450ac6356106d710f58bfc38930aa9d197f3
+deleted: sha256:e29f103e74e8a416e4acf69bb3c68c5b050cc4189e48c1b3ec85984a53a01f17
+untagged: python:3.7.3-stretch
+untagged: python@sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
+deleted: sha256:c83662e7e9c07a0bc1278126a1ad66ab93555c0db09bac6ab942ad56e1e4a18b
+deleted: sha256:8d3edc5ce3a41aff525f0ac2469efa0d3957084186ccf9726f03a80450483652
+untagged: lambci/lambda:nodejs10.x
+untagged: lambci/lambda@sha256:4611e95cf545b5d6a0e72ed32fe5c05beba3e03b0df3b41cf2cc537bf3498866
+deleted: sha256:db93be728e7b9288a1737ed65352d31cc056268b41e1755c4b1f33a288d6ed52
+deleted: sha256:05697f63a583c2232eff0dfa5edceec40e4cebce52a478ec04587bb7ff044e1d
+deleted: sha256:883810e5886e97b94ec2215299519942a6116c349f1d7f4adbf6b3b2556cfc2f
+untagged: lambci/lambda:nodejs12.x
+untagged: lambci/lambda@sha256:098709a2d12098c2ab5ad45138a2f97d3acc1788c2855b3659dd20eed62fd2af
+deleted: sha256:22a4ada8399cfdc17f70e659e12713d9ebf449524e442550bc93d02248e9d9a0
+deleted: sha256:dfdad3e0a3e3cc6006860ebc8f73a7056c438a8fecc2753e290eac07204f6311
+deleted: sha256:d759a2989bb379730c0150b53d72808c4b5e8ce8c24b1f24b6e39498ccadedff
+deleted: sha256:57af7bf672c7e9b8b5874f7346182ffb79e90e2d6dd0292fa2c8ebb25287c9cc
+untagged: lambci/lambda:python3.7
+untagged: lambci/lambda@sha256:98aa6d05a076ed08395e2ad62f119df6a9362aa0f59ac616396f924cee3f59f6
+deleted: sha256:22b4b6fd92604eb1d16c09dfd0eabc59726fa55dbfb0cdf5bd155c2c3681efd0
+deleted: sha256:d9378f4be727c611ec668f4a060ee68bbf0af2f63ac539f42370fc93b654cb03
+deleted: sha256:4260d948bd2f26a4265093a9742d7e0bf53b317d6bce39d601f6ad1bb8362e8b
+untagged: lambci/lambda:python2.7
+untagged: lambci/lambda@sha256:d4bc1d00c7513583dec56953b3d5797c7eea18dc40a7ccd42dfde80d4ecc4557
+deleted: sha256:d96a01fe4c8063a215c8c301593f4cbe32d5e761c907d74415a6d820ea840551
+deleted: sha256:be4f4dcaf94f55930b99f3732b6aeba310453941f6c151ed1ffb9e685d045ab5
+deleted: sha256:845290a934e145f76fd473196f49ba285cb29d4c38b063fddd97a67585bd7959
+deleted: sha256:aa837ff388e8f76eba3f791a19a1febfb0ca627d022b7c680a2a6736dada6645
+deleted: sha256:1e5d684fd92db160df9eaf9b959d99f23988510cf9a032dbcd5567f9f6bbc16e
+untagged: mlproj:latest
+deleted: sha256:201c90a991832605eec837fbf74a25f2c6f54b00c0f14cc99ff3a58c8ffc1692
+deleted: sha256:a2362f494d9b92c71ef61440028bf4d221df268ff4d5b198d90bdfef2d1e6dac
+deleted: sha256:ce3c870ccdb85b2550d90845cf23f4a7f25d4f0876793fc609012af2c7011eca
+deleted: sha256:c5043dca5f8ef16fb34430d01635e2bf43868563021f7a35f729089b5ff14fc6
+deleted: sha256:9e3b356a50187b5755afe58689fd78df861d04e9ac3bfc5b12139d233e91aff8
+deleted: sha256:a18a39f7ad5de79608cd126a559f2e7e3dd99eff1b2f7d87f5c6c99d43d2c7e1
+deleted: sha256:86be3c4965e8d2d3644186648f795009837407d3bd32d5d0c7ee6b8eb4f94307
+deleted: sha256:d8dcd72b9d0d40956adeefaf1f4b0224710ac0112a0178ae059337edd57a4264
+deleted: sha256:34a518642c76e77f0cace72bd993352ac99802c3295931f70a407b735ecb6e27
+deleted: sha256:c8241f3908daf21a87e6a757787548dd3ddd0f0811a00a354e0cc0ee4cf5dac4
+deleted: sha256:f8be1b3c8a18481484cde29117880c23fd2bc18435ec995844e0007816b859b7
+deleted: sha256:dd6ae79e31b9520036e89cac11a7e437222c782c6eceec676b7a41ee4fcd49ae
+deleted: sha256:f117342581b4f421c8ae547a7bbd28faca1a77f6663f9e2cd27fc48148fceb12
+deleted: sha256:9f09ec5dca6f55dd0d01b4134842b4c1b353d6d627711174c1b2d06a0b1c0d8f
+deleted: sha256:81bea2e4eb39ed9ed1ceb0e8ca05cefbdc96bd0b38266c26990c1eb0ed528612
+deleted: sha256:5707f840eb6421a463261e9f62c9fcc691facd718993a666d5c86751ebb57cc3
+deleted: sha256:706c0c43e07bd77aba42160b0d0158297caec76c4da6566d856f28b1754f2265
+deleted: sha256:0db06dff9d9aeb9bed4edde7bd772ad0f3aea497c129d48ed587664d098c6c41
+untagged: lambci/lambda:python3.6
+untagged: lambci/lambda@sha256:a2f24a1ed828940158904e79d87952f378ba9152bae1ca56e040bd6162440863
+deleted: sha256:177c85a1017991e489fe6f63c81676c625caa88398aca398d96d314e49d96ed4
+deleted: sha256:d64506720d78914ad091bf3c3afdccf44ea1f57d7e4e3d6fea2b2fcbe31ec970
+deleted: sha256:5eef8ea3b74fd337f8fadd1c59a1cbd7145760f785675af8c08d88df7eae11f3
+deleted: sha256:c5df97a31f04d468599cec35e5b14e9c228e5884399dddbae86dc56f372e9f31
+deleted: sha256:92c2ebb4e315cfe50a5ab70c8f64ef3354b3c7c09e4a509cb8fa181def4d47d7
+untagged: lambci/lambda:nodejs8.10
+untagged: lambci/lambda@sha256:f3a37b9fc2afcdf63dd8741c48d9b3f9ed0892eed8c490dd50ac7dcc75f7aee3
+deleted: sha256:5754fee26e6e6c8bce022296c63aafc644e0c6b4be8eee37219d42391db71e4a
+deleted: sha256:970c80418177185b8c890042e13396a4336f5d05f593399e6e0dfd54f9bf3a3a
+deleted: sha256:db77ab14ea8858e76497f1a94a2277f0a438b09c4104493f016fa503bd023ae2
+deleted: sha256:09bc3e9e2282ed51a4757c405ab5a590bab48c76f6b728ad7e3a790ae09bc596
+deleted: sha256:49b7a60bcaae1aead3d70b86e9274cbea03113c2f5b99e4498c912425091ce34
+
+Total reclaimed space: 3.795GB
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ 
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ 
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ ./run_docker.sh 
+Sending build context to Docker daemon  1.124MB
+Step 1/6 : FROM python:3.7.3-stretch
+3.7.3-stretch: Pulling from library/python
+6f2f362378c5: Pulling fs layer 
+494c27a8a6b8: Pulling fs layer 
+7596bb83081b: Pulling fs layer 
+372744b62d49: Pull complete 
+615db220d76c: Pull complete 
+39aa0c89bda1: Pull complete 
+ac275157d894: Pull complete 
+98d16dec829a: Pull complete 
+c8514b1c6524: Pull complete 
+Digest: sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
+Status: Downloaded newer image for python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Running in fea59a4c052d
+Removing intermediate container fea59a4c052d
+ ---> c1c67918e4f2
+Step 3/6 : COPY . app.py /app/
+ ---> d0f5ef3b57e7
+Step 4/6 : RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in 1a5ee398f5b2
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-21.0.1
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl (33 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Collecting pylint==2.7.0
+  Downloading pylint-2.7.0-py3-none-any.whl (342 kB)
+Collecting astroid==2.5.0
+  Downloading astroid-2.5-py3-none-any.whl (220 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting toml>=0.7.1
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting isort<6,>=4.2.5
+  Downloading isort-5.8.0-py3-none-any.whl (103 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Collecting wrapt<1.13,>=1.11
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting lazy-object-proxy>=1.4.0
+  Downloading lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl (55 kB)
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=71612 sha256=b0ee4d7c9c66e1305ee363251468e00f0f88177540f5e32c8b6158c30f619497
+  Stored in directory: /root/.cache/pip/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built wrapt
+Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, toml, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
+Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.5 isort-5.8.0 itsdangerous-1.1.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.7.0 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 toml-0.10.2 typed-ast-1.4.2 wrapt-1.12.1
+Removing intermediate container 1a5ee398f5b2
+ ---> 2e118e6831d0
+Step 5/6 : EXPOSE 80
+ ---> Running in 898d4d62d5b8
+Removing intermediate container 898d4d62d5b8
+ ---> 61af5e9623c6
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Running in 6c6a5ef32425
+Removing intermediate container 6c6a5ef32425
+ ---> d91b934b2aba
+Successfully built d91b934b2aba
+Successfully tagged mlproject:latest
+REPOSITORY          TAG                 IMAGE ID            CREATED                  SIZE
+mlproject           latest              d91b934b2aba        Less than a second ago   1.25GB
+python              3.7.3-stretch       34a518642c76        21 months ago            929MB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 322-696-820
+[2021-03-28 08:35:38,290] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-03-28 08:35:38,305] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:35:38,316] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:35:38,320] INFO in app: scaled payload: 
+[[0. 0. 0. 0. 0. 0.]]
+[2021-03-28 08:35:38,321] INFO in app: output prediction: 
+[20.35373177134412]
+172.17.0.1 - - [28/Mar/2021 08:35:38] "POST /predict HTTP/1.1" 200 -
+^C(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ clear
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+d7e28980760048c771d82b29359560b1cd2c24905efcf3f748ef19c649a656af
+
+Deleted Images:
+untagged: python:3.7.3-stretch
+untagged: python@sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
+untagged: mlproject:latest
+deleted: sha256:d91b934b2aba40cd1004391a40d1279ca2a70fd67d066fa17606420fb29cb976
+deleted: sha256:61af5e9623c696e32cd4c107a94906ffbfac405c62c0ae2793a92e519776f969
+deleted: sha256:2e118e6831d0289e966057f83638ea570baf8c428f1155bfb170b4f46533b184
+deleted: sha256:04a0573fb5372f5b397fd19b60a10ba48aa2b419107fe7d542070928a303d929
+deleted: sha256:d0f5ef3b57e7ade9a7eb734cad2c693ae06a5334f39f75935e9e4a9e6e4ebab5
+deleted: sha256:fd177afe0e5744cdb6a7721c375d2a30b830f95748670fb6d6a5074a7baa39f0
+deleted: sha256:c1c67918e4f25ff2ade4af155199d6ee446d8a768c22ce381622fd694c3dbd8e
+deleted: sha256:25949db591c0bb10366601c89474e05f4797b1657f459a5abdd7ba6b1b8eb97f
+deleted: sha256:34a518642c76e77f0cace72bd993352ac99802c3295931f70a407b735ecb6e27
+deleted: sha256:c8241f3908daf21a87e6a757787548dd3ddd0f0811a00a354e0cc0ee4cf5dac4
+deleted: sha256:f8be1b3c8a18481484cde29117880c23fd2bc18435ec995844e0007816b859b7
+deleted: sha256:dd6ae79e31b9520036e89cac11a7e437222c782c6eceec676b7a41ee4fcd49ae
+deleted: sha256:f117342581b4f421c8ae547a7bbd28faca1a77f6663f9e2cd27fc48148fceb12
+deleted: sha256:9f09ec5dca6f55dd0d01b4134842b4c1b353d6d627711174c1b2d06a0b1c0d8f
+deleted: sha256:81bea2e4eb39ed9ed1ceb0e8ca05cefbdc96bd0b38266c26990c1eb0ed528612
+deleted: sha256:5707f840eb6421a463261e9f62c9fcc691facd718993a666d5c86751ebb57cc3
+deleted: sha256:706c0c43e07bd77aba42160b0d0158297caec76c4da6566d856f28b1754f2265
+deleted: sha256:0db06dff9d9aeb9bed4edde7bd772ad0f3aea497c129d48ed587664d098c6c41
+
+Total reclaimed space: 1.255GB
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ clear
+(.devops) ec2-user:~/environment/ml-microservice-kubernetes (main) $ ./run_docker.sh 
+Sending build context to Docker daemon  1.124MB
+Step 1/6 : FROM python:3.7.3-stretch
+3.7.3-stretch: Pulling from library/python
+6f2f362378c5: Pulling fs layer 
+494c27a8a6b8: Pulling fs layer 
+7596bb83081b: Pulling fs layer 
+372744b62d49: Pull complete 
+615db220d76c: Pull complete 
+39aa0c89bda1: Pull complete 
+ac275157d894: Pull complete 
+98d16dec829a: Pull complete 
+c8514b1c6524: Pull complete 
+Digest: sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
+Status: Downloaded newer image for python:3.7.3-stretch
+ ---> 34a518642c76
+Step 2/6 : WORKDIR /app
+ ---> Running in 3aa9415a20d0
+Removing intermediate container 3aa9415a20d0
+ ---> 044e5db969bd
+Step 3/6 : COPY . app.py /app/
+ ---> 43ca26dfa49c
+Step 4/6 : RUN pip install --upgrade pip &&    pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in d5c823a920eb
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/fe/ef/60d7ba03b5c442309ef42e7d69959f73aacccd0d86008362a681c4698e83/pip-21.0.1-py3-none-any.whl (1.5MB)
+Installing collected packages: pip
+  Found existing installation: pip 19.1.1
+    Uninstalling pip-19.1.1:
+      Successfully uninstalled pip-19.1.1
+Successfully installed pip-21.0.1
+Collecting Click==7.0
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Flask==1.0.2
+  Downloading Flask-1.0.2-py2.py3-none-any.whl (91 kB)
+Collecting itsdangerous==1.1.0
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2==2.10.3
+  Downloading Jinja2-2.10.3-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==1.1.1
+  Downloading MarkupSafe-1.1.1-cp37-cp37m-manylinux2010_x86_64.whl (33 kB)
+Collecting numpy==1.17.2
+  Downloading numpy-1.17.2-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24.2
+  Downloading pandas-0.24.2-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting python-dateutil==2.8.0
+  Downloading python_dateutil-2.8.0-py2.py3-none-any.whl (226 kB)
+Collecting pytz==2019.3
+  Downloading pytz-2019.3-py2.py3-none-any.whl (509 kB)
+Collecting scikit-learn==0.20.3
+  Downloading scikit_learn-0.20.3-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting scipy==1.3.1
+  Downloading scipy-1.3.1-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting Werkzeug==0.16.0
+  Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
+Collecting pylint==2.7.0
+  Downloading pylint-2.7.0-py3-none-any.whl (342 kB)
+Collecting isort<6,>=4.2.5
+  Downloading isort-5.8.0-py3-none-any.whl (103 kB)
+Collecting astroid==2.5.0
+  Downloading astroid-2.5-py3-none-any.whl (220 kB)
+Collecting toml>=0.7.1
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting lazy-object-proxy>=1.4.0
+  Downloading lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl (55 kB)
+Collecting wrapt<1.13,>=1.11
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=71595 sha256=595e5a92142337401b8e8163d40ed6db017eeb3df5de83d47625a6214f66e0b0
+  Stored in directory: /root/.cache/pip/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built wrapt
+Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, toml, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
+Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.5 isort-5.8.0 itsdangerous-1.1.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.7.0 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 toml-0.10.2 typed-ast-1.4.2 wrapt-1.12.1
+Removing intermediate container d5c823a920eb
+ ---> dd6e4160384b
+Step 5/6 : EXPOSE 80
+ ---> Running in 2d4ee8030f90
+Removing intermediate container 2d4ee8030f90
+ ---> f47837f760e9
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Running in 315ba6e42c70
+Removing intermediate container 315ba6e42c70
+ ---> caafa0609e0c
+Successfully built caafa0609e0c
+Successfully tagged mlproject:latest
+REPOSITORY          TAG                 IMAGE ID            CREATED                  SIZE
+mlproject           latest              caafa0609e0c        Less than a second ago   1.25GB
+python              3.7.3-stretch       34a518642c76        21 months ago            929MB
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 269-443-251
+[2021-03-28 08:38:13,526] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-03-28 08:38:13,543] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:38:13,554] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-03-28 08:38:13,558] INFO in app: scaled payload: 
+[[0. 0. 0. 0. 0. 0.]]
+[2021-03-28 08:38:13,559] INFO in app: output prediction: 
+[20.35373177134412]
+172.17.0.1 - - [28/Mar/2021 08:38:13] "POST /predict HTTP/1.1" 200 -

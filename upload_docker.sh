@@ -3,6 +3,7 @@
 
 # Assumes that an image is built via `run_docker.sh`
 
+#Login to Docker to upload
 #docker login --username=<username>
 #docker tag caafa0609e0c itsdankush/mlproject:stable 
 #docker push itsdankush/mlproject   
