@@ -19,4 +19,4 @@ echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
 # Push image to a docker repository
-docker push itsdankush/mlproject 
+docker push dockerpath
