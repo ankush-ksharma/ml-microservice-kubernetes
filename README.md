@@ -1,4 +1,4 @@
-![CircleCI](https://circleci.com/gh/ankush-ksharma/ml-microservice-kubernetes.svg?style=svg)(https://circleci.com/gh/ankush-ksharma/ml-microservice-kubernetes)
+[![CircleCI](https://circleci.com/gh/ankush-ksharma/ml-microservice-kubernetes.svg?style=svg)](https://circleci.com/gh/ankush-ksharma/ml-microservice-kubernetes)
 
 ## Project Overview
 
