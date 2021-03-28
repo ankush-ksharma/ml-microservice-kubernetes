@@ -14,8 +14,7 @@ install:
 	# This should be run from inside a virtualenv
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
-	#install hadolint
-	wget https://github.com/hadolint/hadolint/releases/download/v2.0.0/hadolint-Linux-x86_64make
+	
 test:
 	# Additional, optional, tests could go here
 	#python -m pytest -vv --cov=myrepolib tests/*.py
