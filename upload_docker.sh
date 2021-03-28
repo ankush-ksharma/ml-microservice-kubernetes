@@ -10,7 +10,7 @@
 # Step 1:
 # Create dockerpath
 # dockerpath=<your docker ID/path>
-dockerpath= itsdankush/mlproject 
+dockerpath= itsdankush/mlproject:stable 
 
 # Step 2:  
 # Authenticate & tag
