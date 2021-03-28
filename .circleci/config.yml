@@ -28,8 +28,8 @@ jobs:
             . venv/bin/activate
             make install
             #install hadolint
-            wget https://github.com/hadolint/hadolint/releases/download/v2.0.0/hadolint-Linux-x86_64 &&\
-                sudo chmod +x hadolint
+            wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+                chmod +x ./hadolint
       - save_cache:
           paths:
             - ./venv
